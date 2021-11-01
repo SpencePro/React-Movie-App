@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {AppProvider} from "./context"
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppProvider>
+        <App/>
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

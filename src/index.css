@@ -1,4 +1,5 @@
 body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +11,185 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.btn {
+  padding: 0.2rem 0.5rem !important;
+  border: 1px solid black !important; 
+}
+
+.btn:hover {
+  background-color:rgb(196, 226, 253);
+}
+
+/* Nav Bar */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background-color: aliceblue;
+}
+
+.nav-links {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-links li {
+  margin: 1rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+}
+
+/* Home Image */
+
+.home-img {
+  height: 30rem;
+}
+
+/* Filter/Sorting */
+
+.sorting-options {
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+
+/* Search Form */
+
+.search-form-div {
+  margin-left: 30%;
+  margin-right: 30%;
+  position: relative;
+  top: 20rem;
+  padding: 0.5rem;
+  border-radius: 24px;
+  background-color: white;
+  box-shadow: inset 2px 2px 2px 0.1rem #aaa;
+}
+
+.search-form input {
+  width: 90%;
+  border: none;
+}
+
+.search-form input:active, .search-form input:focus {
+  outline: none;
+
+}
+
+.link-image {
+  display: none;
+}
+
+.search-results {
+  position: absolute;
+  z-index: 100;
+  width: 97%;
+  padding: 0.5rem;
+}
+
+.search-result-single {
+  background-color: aliceblue;
+  border: 1px solid rgb(196, 226, 253);
+  border-top: none;
+}
+
+.search-result-single a {
+  text-decoration: none;
+}
+
+.search-result-single p {
+  margin-bottom: 0.5rem;
+}
+
+.search-result-single:hover {
+  background-color: rgb(196, 226, 253);
+}
+
+.search-result-title:hover .link-image {
+  display: block;
+}
+
+/* Movie List */
+
+.movie-list-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.movie {
+  width: 20%;
+}
+
+.page-selector {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.page-selector h5 {
+  margin: 1rem;
+}
+
+.page-btn {
+  border-radius: 50%;
+  background-color: aliceblue;
+  border: solid 1px #084298;
+}
+
+/* Watchlist / Rated Movies */
+
+.movie-section {
+  margin-left: 20%;
+  margin-right: 20%;
+  border-top: 2px solid blue;
+  padding-top: 1rem;
+}
+
+.movie-element {
+  display: flex;
+  background-color: aliceblue;
+  align-items: baseline;
+  margin-bottom: 0.2rem;
+  padding: 0.2rem;
+}
+
+.movie-element a {
+  text-decoration: none;
+}
+
+.movie-element p {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.text-divider {
+  width: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: black;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  padding-bottom: 0.6rem;
+}
+
+/* Footer */
+
+footer {
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  background-color: azure;
 }
