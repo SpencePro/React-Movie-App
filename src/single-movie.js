@@ -6,6 +6,7 @@ import { Loading } from './loading';
 import { API_KEY, IMAGE_BASE_URL, LOGO_SIZES, POSTER_SIZES } from "./config";
 import { RatingForm } from "./forms";
 import { Link } from "react-router-dom";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 export const SingleMovie = () => {
     const {id} = useParams();
@@ -109,44 +110,54 @@ export const SingleMovie = () => {
     const {movieId, title, synopsis, poster, release_date, runtime, popularity, rating, vote_count} = movie;
 
     return (
-        <main>
-            <header>
-                <h2>{title}</h2>
-                <img src={`${IMAGE_BASE_URL}w500${poster}`} alt={title} />
-                <h5>Community Score: {rating} ({vote_count} votes)</h5>
-                <h5>Popularity: {popularity}</h5>
-                <h5>{runtime} minutes</h5>
-                <h5>Released {release_date}</h5>
-            </header>
-            <div className="single-movie-synopsis">
-                <p>{synopsis}</p>
-            </div>
-            <div className="user-options">
-                <h5>Your Score: {userRating > 0 ? userRating:"N/A"}</h5>
-                <RatingForm id={movieId} title={title} release_date={release_date} rating={rating} />
-                <div className="watchlist-button-div">
-                    <h5>{present ? "In Watchlist":""}</h5>
-                    <button type="button" className="btn watchlist-btn" 
-                    onClick={() => toggleWatchlist(movieId, title, release_date, rating)}>
-                        {present ? "Remove from Watchlist":"Add to Watchlist"}
-                    </button>
+        <main style={{margin:"1rem"}}>
+            <div className="main-movie-info">
+                <header>
+                    <h2>{title}</h2>
+                    <img src={`${IMAGE_BASE_URL}w500${poster}`} alt={title} />
+                    <div className="single-movie-details">
+                        <h5>Community Score: {rating} ({vote_count} votes)</h5>
+                        <h5>Popularity: {popularity}</h5>
+                        <h5>{runtime} minutes</h5>
+                        <h5>Released {release_date}</h5>
+                    </div>
+                </header>
+                <div className="secondary-movie-info">
+                    <div className="single-movie-synopsis">
+                        <p>{synopsis}</p>
+                    </div>
+                    <div className="user-options">
+                        <h5>Your Score: {userRating > 0 ? userRating:"N/A"}</h5>
+                        <RatingForm id={movieId} title={title} release_date={release_date} rating={rating} />
+                        <div className="watchlist-button-div">
+                            <h5>{present ? "In Watchlist":""}</h5>
+                            <button type="button" className="btn watchlist-btn" 
+                            onClick={() => toggleWatchlist(movieId, title, release_date, rating)}>
+                                {present ? "Remove from Watchlist":"Add to Watchlist"}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             {!recMovies ? 
-            <div>
+            <div className="recommendations">
                 <h5>recommendations could not be retrieved at this time</h5>
             </div>
             :
             <div className="recommendations">
                 <h5>Similar movies</h5>
+                <div className="movie-rec-list">
                 {recMovies.map((movie) => {
                     return (
-                        <article className="movie-rec" key={movie.movieId}>
-                            <img src={`${IMAGE_BASE_URL}w92${movie.poster}`} alt={movie.title} />
-                            <p><Link to={`/movie/${movie.movieId}`}>{movie.title}</Link></p>
-                        </article>
+                        <div className="single-movie-rec-div">
+                            <article className="movie-rec shadow" key={movie.movieId}>
+                                <Link to={`/movie/${movie.movieId}`}><img src={`${IMAGE_BASE_URL}w92${movie.poster}`} alt={movie.title} /></Link>
+                                <p><Link to={`/movie/${movie.movieId}`}>{movie.title}</Link></p>
+                            </article>
+                        </div>
                     )
                 })}
+                </div>
             </div>
             }
         </main>

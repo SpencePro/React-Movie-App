@@ -22,6 +22,18 @@ code {
   background-color:rgb(196, 226, 253);
 }
 
+.shadow {
+  box-shadow: 3px 3px 5px 2px #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+label {
+  margin-right: 0.5rem;
+}
+
 /* Nav Bar */
 
 nav {
@@ -42,6 +54,21 @@ nav {
 
 .nav-links li {
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.line-below {
+  max-width: 0;
+  background-color: blue;
+  height: 1px;
+  transition-property: max-width;
+  transition-duration: 0.5s;
+  transition-delay: 0s;
+}
+
+.nav-links li:hover .line-below {
+  max-width: 150px;
 }
 
 .nav-links li a {
@@ -62,6 +89,7 @@ nav {
   justify-content: space-evenly;
   margin-left: 30%;
   margin-right: 30%;
+  margin-top: 2rem;
 }
 
 
@@ -123,20 +151,102 @@ nav {
 
 /* Movie List */
 
+.active {
+  height: 3rem;
+  background-color: aliceblue;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.active .filter-btn {
+  background-color: aliceblue;
+  border: none !important;
+  font-size: x-large;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.active .filter-btn:focus, .active .btn:focus {
+  outline: 0 !important;
+}
+
+.movie-list {
+
+}
+
 .movie-list-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  padding: 1rem;
+  background-color: aliceblue;
+  border-radius: 10px;
 }
 
 .movie {
-  width: 20%;
+  display: flex;
+}
+
+.movie-sub-div {
+  padding: 0.5rem;
+  background-color: white;
+  margin: 0.2rem;
+  height: 98%;
+  border-radius: 5px;
+}
+
+.movie-sub-div header h5 {
+  max-width: fit-content;
+}
+
+.movie-sub-div header h5 a {
+  text-decoration: none;
+}
+
+.movie-sub-div img:hover {
+  filter: brightness(85%);
+}
+
+.movie .movie-info p {
+  margin-bottom: 0.2rem;
+}
+
+.movie-info {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  margin-left: 11.5rem;
+  width: 5rem;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.2rem;
+}
+
+.movie-info p:nth-child(-n+2) {
+  border-bottom: 1px solid rgb(196, 226, 253);;
+}
+
+.movie-info::after {
+  content: "";
+  position: absolute;
+  top: 75%;
+  right: 100%;
+  margin-top: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+
+.movie-sub-div:hover + .movie-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .page-selector {
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: baseline;
 }
 
 .page-selector h5 {
@@ -147,6 +257,11 @@ nav {
   border-radius: 50%;
   background-color: aliceblue;
   border: solid 1px #084298;
+  padding-bottom: 5px;
+}
+
+.page-btn:hover {
+  background-color: rgb(196, 226, 253);;
 }
 
 /* Watchlist / Rated Movies */
@@ -185,11 +300,88 @@ nav {
   padding-bottom: 0.6rem;
 }
 
+/* Single Movie */
+
+.main-movie-info {
+  display: flex;
+}
+
+.main-movie-info header {
+  margin: 1rem;
+}
+
+.main-movie-info header h2 {
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+.single-movie-details, .single-movie-synopsis {
+  margin: 1rem;
+  background-color: aliceblue;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.single-movie-details {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.user-options {
+  margin: 1rem;
+  background-color: aliceblue;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.recommendations {
+  margin: 1rem;
+}
+
+.movie-rec-list {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+.single-movie-rec-div {
+  
+}
+
+.movie-rec {
+  padding: 0.5rem;
+  background-color: white;
+  margin: 0.2rem;
+  height: 98%;
+  border-radius: 5px;
+  width: 8rem;
+}
+
+.movie-rec p a {
+  text-decoration: none;
+}
+
+.movie-rec img:hover {
+  filter: brightness(85%);
+}
+
 /* Footer */
 
 footer {
-  height: 3rem;
+  height: 6rem;
   margin: 0;
   padding: 0;
   background-color: azure;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+footer p {
+  margin-bottom: 0.5rem;
 }

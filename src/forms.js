@@ -11,8 +11,8 @@ export const RatingForm = (movieId) => {
 
     return (
         <form className="score-form">
-            <label htmlFor="">Rate the movie: </label>
-            <select name="score" onChange={handleSelect}>
+            <label htmlFor="score">Rate the movie: </label>
+            <select name="score" id="score" onChange={handleSelect}>
                 <option value="" default></option>
                 {nums.map((num) => {
                 return (

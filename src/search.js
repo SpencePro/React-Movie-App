@@ -2,6 +2,7 @@ import React, { useReducer, useRef } from "react";
 import { useGlobalContext } from "./context";
 import { Link } from 'react-router-dom';
 import { IMAGE_BASE_URL } from "./config";
+import { FaSearch } from "react-icons/fa";
 
 export const Search = () => {
     const searchValue = useRef("");
@@ -24,7 +25,7 @@ export const Search = () => {
             <form action="" className="search-form" onSubmit={(e)=>e.preventDefault()}>
                 <div className="input-box">
                     <input type="text" id="searchbox" placeholder="Search Movies" ref={searchValue} onChange={searchFunction} autoComplete="off"/>
-                    {/* search icon */}
+                    <FaSearch style={{fontSize: "larger"}} />
                 </div>
                 <div className="search-results">
                     {searchResults.map((result) => {

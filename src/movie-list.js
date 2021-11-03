@@ -4,6 +4,7 @@ import { Loading } from './loading';
 import { Link } from 'react-router-dom';
 import { Error } from "./error";
 import { IMAGE_BASE_URL } from "./config";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
 export const MovieList = () => {
     const [loading, setLoading] = useState(false);
@@ -56,30 +57,33 @@ export const MovieList = () => {
 
     return (
         <main>
-            <h2>{titles[typeOfMovie]} Movies</h2>
+            {/* <h2 className="type-of-movie">{titles[typeOfMovie]} Movies</h2> */}
             <section className="movie-list-section">
                 {movieList.map((movie) => {
                     const {movieId, title, poster, release_date, popularity, rating} = movie;
                     return (
                         <article className="movie" key={movieId}>
-                            <header>
-                            <Link to={`/movie/${movieId}`}><img src={`${IMAGE_BASE_URL}w154${poster}`} alt={title}/></Link>
-                                <h5><Link to={`/movie/${movieId}`}>{title}</Link></h5>
-                            </header>
-                            <div className="movie-info">
+                            <div className="movie-sub-div shadow">
+                                <header>
+                                    <Link to={`/movie/${movieId}`}><img src={`${IMAGE_BASE_URL}w154${poster}`} alt={title}/></Link>
+                                    <h5><Link to={`/movie/${movieId}`}>{title}</Link></h5>
+                                </header>
+                                
+                            </div>
+                            <span className="movie-info shadow">
                                 <p>Released {release_date}</p>
                                 <p>Popularity: {popularity}</p>
-                                <p>{rating}</p>
-                            </div>
+                                <p>Rating: {rating}</p>
+                            </span>
                         </article>
                     );
                 })}
             </section>
             {typeOfMovie === "trending" || 
                 <div className="page-selector">
-                    {pageNumber === 1 || <button type="button" className="page-btn" onClick={() => togglePage("back")}>Back</button>}
+                    {pageNumber === 1 || <button type="button" className="page-btn" style={{fontSize:"larger"}} onClick={() => togglePage("back")}><FaAngleLeft/></button>}
                     <h5>{pageNumber}</h5>
-                    <button type="button" className="page-btn" onClick={() => togglePage("next")}>Next</button>
+                    <button type="button" className="page-btn" style={{fontSize:"larger"}} onClick={() => togglePage("next")}><FaAngleRight/></button>
                 </div>
             }
         </main>

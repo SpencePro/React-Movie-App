@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <div className="body-content">
         <Navbar />
         <Switch>
           <Route exact path="/">
@@ -30,6 +31,7 @@ function App() {
             <Error />
           </Route>
         </Switch>
+        </div>
         <Footer />
       </Router>
     </div>
