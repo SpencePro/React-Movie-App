@@ -13,27 +13,51 @@ export const Watchlist = () => {
             </main>
         )
     }
+    let data = [];
+    
+    for (let i = 0; i < watchlist.length; i++) {
+        const rated = movieRatings.find((movie) => watchlist[i].id === parseInt(movie.id));
+        const newEntry = {
+            id:watchlist[i].id,
+            title:watchlist[i].title, 
+            release_date:watchlist[i].release_date, 
+            rating:watchlist[i].rating,
+            user_rating: rated ? `${rated.score}`:"N/A",
+            remove_button: "true"
+        };
+        data = [...data, newEntry];
+    }
+
     return (
         <main className="watchlist">
             <h2>Watchlist</h2>
-            <div className="movie-section">
-                {watchlist.map((movie) => {
-                    const {id, title, release_date, rating} = movie;
-                    const rated = movieRatings.find((movie) => movie.id === parseInt(id));
-                    return (
-                        <article className="movie-element" key={id}>
-                            <h5><Link to={`/movie/${id}`}>{title}</Link></h5>
-                            <span className="text-divider"></span>
-                            <p>{release_date}</p>
-                            <span className="text-divider"></span>
-                            <p>Community Rating: {rating}</p>
-                            <span className="text-divider"></span>
-                            <p>Your Rating: {rated ? `${rated.score}`:"N/A"}</p>
-                            <span className="text-divider"></span>
-                            <button className="btn" type="button" onClick={()=>toggleWatchlist(id, title, release_date, rating)}>REMOVE</button>
-                        </article>
-                    )
-                })}
+            <div className="table-container">
+                <table>
+                    <div className="movie-section">
+                        <tbody>
+                        <tr>
+                            <th>TITLE</th>
+                            <th>RELEASED</th>
+                            <th>RATING</th>
+                            <th>USER RATING</th>
+                            <th>REMOVE</th>
+                        </tr>
+                        {data.map((movie) => {
+                            console.log(movie);
+                            const {id, title, release_date, rating, user_rating} = movie;
+                            return (
+                                <tr className="movie-element" key={id}>
+                                    <td><Link to={`/movie/${id}`}>{title}</Link></td>
+                                    <td>{release_date}</td>
+                                    <td>{rating}</td>
+                                    <td>{user_rating}</td>
+                                    <td><button className="btn" type="button" onClick={()=>toggleWatchlist(id, title, release_date, rating)}>REMOVE</button></td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </div>
+                </table>
             </div>
         </main>
     );

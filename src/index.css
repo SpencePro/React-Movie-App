@@ -79,6 +79,7 @@ nav {
 
 .home-img {
   height: 30rem;
+  background-position: 50%;
 }
 
 /* Filter/Sorting */
@@ -266,19 +267,25 @@ nav {
 
 /* Watchlist / Rated Movies */
 
+table {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table td, table th {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
 .movie-section {
-  margin-left: 20%;
-  margin-right: 20%;
   border-top: 2px solid blue;
   padding-top: 1rem;
 }
 
 .movie-element {
-  display: flex;
+  /* display: flex; */
   background-color: aliceblue;
   align-items: baseline;
-  margin-bottom: 0.2rem;
-  padding: 0.2rem;
+  border-bottom: 2px solid white;
 }
 
 .movie-element a {
@@ -384,4 +391,102 @@ footer {
 
 footer p {
   margin-bottom: 0.5rem;
+}
+
+
+/* MOBILE RESPONSIVENESS */
+
+/* Navbar */
+
+/* Search */
+
+@media (max-width:500px) {
+  .search-form-div {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .search-results {
+    width: 93%;
+  }
+}
+
+/* Movie List */
+
+@media (max-width:500px) {
+  .active {
+    height: 4rem;
+  }
+  .movie-list-section {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+  .btn {
+    padding: 0.1rem 0.2rem !important;
+  }
+  .movie-info {
+    margin-left: 10rem;
+  }
+  .filter-btn {
+    height: 3.5rem;
+  }
+  .top-btn {
+    position: fixed;
+    z-index: 101;
+    bottom: 0;
+    right: 0;
+    border: none !important;
+    color: black !important;
+    font-size: 2rem !important;
+    padding: 1rem !important;
+    background-color: rgb(41 19 48 / 50%) !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Watchlist/Ratings */
+
+@media (max-width:500px) {
+  .movie-section {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .movie-element, .movie-element h5 {
+    font-size: small;
+    align-items: center;
+  }
+  table td, table th {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
+
+/* Single Movie */
+
+@media (max-width:500px) {
+  .main-movie-info {
+    flex-direction: column;
+  }
+  .main-movie-info header img {
+    max-width: 300px;
+  }
+  .single-movie-rec-div:first-child {
+    margin-left: 22.5rem;
+  }
+  .movie-rec-list {
+    width: auto;
+    overflow: scroll;
+  }
+}
+
+
+/* Footer */
+
+@media (max-width:500px) {
+  footer {
+    height: 5rem;
+  }
+  footer p {
+    margin-bottom: 0.25rem;
+    font-size: small;
+  }
 }

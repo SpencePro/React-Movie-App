@@ -129,6 +129,8 @@ const AppProvider = ({ children }) => {
     }, [pageNumber, typeOfMovie])
 
     const togglePage = (action) => {
+        document.body.scrollTop = 500;
+        document.documentElement.scrollTop = 500;
         if (typeOfMovie === "top_rated" || typeOfMovie === "popular") {
             if (action === "next") {
                 setPageNumber(pageNumber + 1);
@@ -145,8 +147,15 @@ const AppProvider = ({ children }) => {
                 const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
                 const data = await response.json();
                 if (response.status !== 404) {
+                    let imageSize = "";
+                    if (window.innerWidth >= 501) {
+                        imageSize = "original";
+                    }
+                    else {
+                        imageSize = "w780";
+                    }
                     const imagePath = data.results[homePageImageIndex].poster_path;
-                    const newImageUrl = `${IMAGE_BASE_URL}original${imagePath}`;
+                    const newImageUrl = `${IMAGE_BASE_URL}${imageSize}${imagePath}`;
                     setHomePageImageUrl(newImageUrl);
                 }
             }
@@ -160,8 +169,13 @@ const AppProvider = ({ children }) => {
         setHomePageImageIndex(randomInt);
     }
 
+    const returnToTop = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
     return (
-        <AppContext.Provider value={{watchlist, setWatchlist, toggleWatchlist, filterMovies, setSearchTerm, rateMovies, movieRatings, searchResults, setSearchResults, url, typeOfMovie, setTypeOfMovie, pageNumber, setPageNumber, togglePage, bannerImage, homePageImageUrl}}>
+        <AppContext.Provider value={{watchlist, setWatchlist, toggleWatchlist, filterMovies, setSearchTerm, rateMovies, movieRatings, searchResults, setSearchResults, url, typeOfMovie, setTypeOfMovie, pageNumber, setPageNumber, togglePage, bannerImage, homePageImageUrl, returnToTop}}>
             {children}
         </AppContext.Provider>
     );

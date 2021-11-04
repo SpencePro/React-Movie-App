@@ -9,7 +9,7 @@ export const HomeImage = () => {
         bannerImage();
     })
     return (
-        <div className="home-img" style={{backgroundImage: "url("+ homePageImageUrl +")", backgroundAttachment: "fixed", backgroundPosition: "50%"}}>
+        <div className="home-img" style={{backgroundImage: "url("+ homePageImageUrl +")", backgroundAttachment: "fixed"}}>
             <div>
                 <Search />
             </div>

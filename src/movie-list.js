@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import { Error } from "./error";
 import { IMAGE_BASE_URL } from "./config";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import { IoMdArrowDropup } from "react-icons/io";
 
 export const MovieList = () => {
     const [loading, setLoading] = useState(false);
     const [movieList, setMovieList] = useState([]);
-    const { url, typeOfMovie, pageNumber, togglePage } =  useGlobalContext();
+    const { url, typeOfMovie, pageNumber, togglePage, returnToTop } =  useGlobalContext();
 
     const titles = {
         top_rated: "Top Rated",
@@ -57,7 +58,6 @@ export const MovieList = () => {
 
     return (
         <main>
-            {/* <h2 className="type-of-movie">{titles[typeOfMovie]} Movies</h2> */}
             <section className="movie-list-section">
                 {movieList.map((movie) => {
                     const {movieId, title, poster, release_date, popularity, rating} = movie;
@@ -79,6 +79,7 @@ export const MovieList = () => {
                     );
                 })}
             </section>
+            {window.innerWidth > 500 || <button className="btn top-btn" onClick={returnToTop}><IoMdArrowDropup /></button>}
             {typeOfMovie === "trending" || 
                 <div className="page-selector">
                     {pageNumber === 1 || <button type="button" className="page-btn" style={{fontSize:"larger"}} onClick={() => togglePage("back")}><FaAngleLeft/></button>}

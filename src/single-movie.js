@@ -6,7 +6,7 @@ import { Loading } from './loading';
 import { API_KEY, IMAGE_BASE_URL, LOGO_SIZES, POSTER_SIZES } from "./config";
 import { RatingForm } from "./forms";
 import { Link } from "react-router-dom";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 
 export const SingleMovie = () => {
     const {id} = useParams();
@@ -17,6 +17,7 @@ export const SingleMovie = () => {
     const recommendationsUrl = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
     const [recLoading, setRecLoading] = useState(false);
     const [recMovies, setRecMovies] = useState([]);
+    const [recIndex, setRecIndex] = useState(0);
 
     const {watchlist, toggleWatchlist, movieRatings} = useGlobalContext();
 
@@ -108,13 +109,23 @@ export const SingleMovie = () => {
     }
 
     const {movieId, title, synopsis, poster, release_date, runtime, popularity, rating, vote_count} = movie;
+    let imageSize = "";
+    console.log(window.innerWidth);
+    if (window.innerWidth >= 501) {
+        imageSize = "w500";
+    }
+    else {
+        imageSize = "w342";
+    }
+
+    console.log(recMovies);
 
     return (
         <main style={{margin:"1rem"}}>
             <div className="main-movie-info">
                 <header>
                     <h2>{title}</h2>
-                    <img src={`${IMAGE_BASE_URL}w500${poster}`} alt={title} />
+                    <img src={`${IMAGE_BASE_URL}${imageSize}${poster}`} alt={title} />
                     <div className="single-movie-details">
                         <h5>Community Score: {rating} ({vote_count} votes)</h5>
                         <h5>Popularity: {popularity}</h5>
@@ -149,8 +160,8 @@ export const SingleMovie = () => {
                 <div className="movie-rec-list">
                 {recMovies.map((movie) => {
                     return (
-                        <div className="single-movie-rec-div">
-                            <article className="movie-rec shadow" key={movie.movieId}>
+                        <div className="single-movie-rec-div" key={movie.movieId}>
+                            <article className="movie-rec shadow">
                                 <Link to={`/movie/${movie.movieId}`}><img src={`${IMAGE_BASE_URL}w92${movie.poster}`} alt={movie.title} /></Link>
                                 <p><Link to={`/movie/${movie.movieId}`}>{movie.title}</Link></p>
                             </article>
