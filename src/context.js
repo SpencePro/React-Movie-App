@@ -1,7 +1,4 @@
-import React, { useState, useContext, useEffect, useReducer } from 'react';
-import { useCallback } from 'react';
-import { Loading } from './loading';
-import { MovieList } from './movie-list';
+import React, { useState, useContext, useEffect } from 'react';
 import { API_KEY, IMAGE_BASE_URL } from "./config";
 
 
@@ -28,6 +25,16 @@ const AppProvider = ({ children }) => {
             return []
         }
     }
+
+    const getLocalStorageTheme = () => {
+        let theme = localStorage.getItem("theme");
+        if (theme) {
+            return theme;
+        }
+        else {
+            return "light";
+        }
+    }
     
     const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
     const [searchResults, setSearchResults] = useState([]);
@@ -39,6 +46,7 @@ const AppProvider = ({ children }) => {
     const [url, setUrl] = useState(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${pageNumber}`);
     const [homePageImageIndex, setHomePageImageIndex] = useState(0);
     const [homePageImageUrl, setHomePageImageUrl] = useState("");
+    const [websiteTheme, setWebsiteTheme] = useState(getLocalStorageTheme());
 
     const toggleWatchlist = (movieId, title, release_date, rating) => {
         const watchlistMovie = {
@@ -85,13 +93,16 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("ratings", JSON.stringify(movieRatings));
     }, [movieRatings])
+    useEffect(() => {
+        localStorage.setItem("theme", websiteTheme);
+    }, [websiteTheme])
     
     useEffect(() => {
         async function fetchMovies() {
             try {
                 const response = await fetch(`${searchUrl}${searchTerm}`);
                 const data = await response.json();
-                if (response.status !== 404) {
+                if (response.status !== 404 && response.status !== 422) {
                     let searchMovieList = [];
                     for (let i = 0; i < data.results.length; i++) {
                         const newMovie = {
@@ -113,8 +124,10 @@ const AppProvider = ({ children }) => {
             catch (error) {
             }
         }
-        fetchMovies();
-    }, [searchTerm])
+        if (searchTerm !== "") {
+            fetchMovies();            
+        }
+    }, [searchTerm, searchUrl])
 
     const filterMovies = () => {
         if (typeOfMovie === "trending") {
@@ -175,7 +188,7 @@ const AppProvider = ({ children }) => {
     }
 
     return (
-        <AppContext.Provider value={{watchlist, setWatchlist, toggleWatchlist, filterMovies, setSearchTerm, rateMovies, movieRatings, searchResults, setSearchResults, url, typeOfMovie, setTypeOfMovie, pageNumber, setPageNumber, togglePage, bannerImage, homePageImageUrl, returnToTop}}>
+        <AppContext.Provider value={{websiteTheme, setWebsiteTheme, watchlist, setWatchlist, toggleWatchlist, filterMovies, setSearchTerm, rateMovies, movieRatings, searchResults, setSearchResults, url, typeOfMovie, setTypeOfMovie, pageNumber, setPageNumber, togglePage, bannerImage, homePageImageUrl, returnToTop}}>
             {children}
         </AppContext.Provider>
     );

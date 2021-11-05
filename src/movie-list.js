@@ -12,12 +12,6 @@ export const MovieList = () => {
     const [movieList, setMovieList] = useState([]);
     const { url, typeOfMovie, pageNumber, togglePage, returnToTop } =  useGlobalContext();
 
-    const titles = {
-        top_rated: "Top Rated",
-        popular: "Most Popular",
-        trending: "Trending"
-    }
-
     useEffect(() => {
         setLoading(true);
         async function fetchMovies() {
@@ -68,7 +62,6 @@ export const MovieList = () => {
                                     <Link to={`/movie/${movieId}`}><img src={`${IMAGE_BASE_URL}w154${poster}`} alt={title}/></Link>
                                     <h5><Link to={`/movie/${movieId}`}>{title}</Link></h5>
                                 </header>
-                                
                             </div>
                             <span className="movie-info shadow">
                                 <p>Released {release_date}</p>

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGlobalContext } from "./context";
 
 export const RatingForm = (movieId) => {
     const nums = Array.from({length: 10}, (x, i) => i + 1);
     const {rateMovies} = useGlobalContext();
     const handleSelect = (e) => {
-        console.log(movieId);
         rateMovies(e.target.value, movieId.id, movieId.title, movieId.release_date, movieId.rating);
     }
 

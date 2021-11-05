@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { useGlobalContext } from "./context";
 import { Error } from "./error";
 import { useParams } from 'react-router';
 import { Loading } from './loading';
-import { API_KEY, IMAGE_BASE_URL, LOGO_SIZES, POSTER_SIZES } from "./config";
+import { API_KEY, IMAGE_BASE_URL } from "./config";
 import { RatingForm } from "./forms";
 import { Link } from "react-router-dom";
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 
 export const SingleMovie = () => {
     const {id} = useParams();
@@ -17,7 +16,6 @@ export const SingleMovie = () => {
     const recommendationsUrl = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
     const [recLoading, setRecLoading] = useState(false);
     const [recMovies, setRecMovies] = useState([]);
-    const [recIndex, setRecIndex] = useState(0);
 
     const {watchlist, toggleWatchlist, movieRatings} = useGlobalContext();
 
@@ -33,7 +31,7 @@ export const SingleMovie = () => {
         userRating = parseInt(userRated.score);
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setLoading(true);
         async function fetchMovies() {
             try {
@@ -42,14 +40,14 @@ export const SingleMovie = () => {
                 if (response.status !== 404) {
                     const {
                         id: movieId,
-                        title: title,
+                        title,
                         overview: synopsis,
                         poster_path: poster,
-                        release_date: release_date,
-                        runtime: runtime,
-                        popularity: popularity,
+                        release_date,
+                        runtime,
+                        popularity,
                         vote_average: rating,
-                        vote_count: vote_count,
+                        vote_count,
                     } = data
                     const newMovie = {
                         movieId, title, synopsis, poster, release_date, runtime, popularity, rating, vote_count
@@ -67,7 +65,7 @@ export const SingleMovie = () => {
             }
         }
         fetchMovies();
-    }, [id])
+    }, [url])
 
     useEffect(() => {
         setRecLoading(true);
@@ -98,7 +96,7 @@ export const SingleMovie = () => {
             }
         }
         fetchMovieRecs();
-    }, [id])
+    }, [recommendationsUrl])
     
     if (loading) {
         return <Loading />
@@ -110,15 +108,12 @@ export const SingleMovie = () => {
 
     const {movieId, title, synopsis, poster, release_date, runtime, popularity, rating, vote_count} = movie;
     let imageSize = "";
-    console.log(window.innerWidth);
     if (window.innerWidth >= 501) {
         imageSize = "w500";
     }
     else {
         imageSize = "w342";
     }
-
-    console.log(recMovies);
 
     return (
         <main style={{margin:"1rem"}}>

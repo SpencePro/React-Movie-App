@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Navbar } from "./navbar";
@@ -8,10 +7,12 @@ import { SingleMovie } from "./single-movie";
 import { Watchlist } from "./watchlist";
 import { Error } from "./error";
 import { RatedMovies } from './rated-movies';
+import { useGlobalContext } from "./context";
 
 function App() {
+  const { websiteTheme } = useGlobalContext();
   return (
-    <div className="App">
+    <div className={`${websiteTheme === "dark" ? "App dark-mode":"App"}`}>
       <Router>
         <div className="body-content">
         <Navbar />

@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from "react";
+import React, { useRef } from "react";
 import { useGlobalContext } from "./context";
 import { Link } from 'react-router-dom';
 import { IMAGE_BASE_URL } from "./config";

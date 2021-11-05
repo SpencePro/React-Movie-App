@@ -3,7 +3,6 @@ import { useGlobalContext } from "./context";
 import { Search } from "./search"
 
 export const HomeImage = () => {
-    // fetch to url for random image from api to display prominently; change on each render
     const {bannerImage, homePageImageUrl} = useGlobalContext();
     document.addEventListener("DOMContentLoaded", function() {
         bannerImage();
