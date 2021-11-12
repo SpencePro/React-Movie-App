@@ -43,6 +43,11 @@ nav {
   background-color: aliceblue;
 }
 
+.logo img {
+  height: 4rem;
+  margin-left: 1rem;
+}
+
 .nav-links {
   list-style: none;
   padding-left: 0;
@@ -316,6 +321,7 @@ table td, table th {
 .main-movie-info header h2 {
   background-color: aliceblue;
   border-radius: 5px;
+  padding: 0.5rem;
 }
 
 .single-movie-details, .single-movie-synopsis {
@@ -385,6 +391,10 @@ footer p {
   margin-bottom: 0.5rem;
 }
 
+.error-div {
+  margin-top: 5rem;
+}
+
 
 /* MOBILE RESPONSIVENESS */
 
@@ -392,6 +402,11 @@ footer p {
 
 .nav-links li {
   margin: 0.3rem;
+}
+
+.logo img {
+  height: 3rem;
+  margin-left: 0.5rem;
 }
 
 /* Search */
@@ -523,6 +538,10 @@ footer p {
   background-color: #4b5054;
 }
 
+.dark-mode .logo img {
+  filter: invert(1);
+}
+
 .dark-mode .search-result-single {
   background-color: #4b5054;
   border: 1px solid rgb(119, 118, 118);
@@ -559,6 +578,10 @@ footer p {
 
 .dark-mode .page-btn:hover {
   background-color: rgb(119, 118, 118);;
+}
+
+.dark-mode .top-btn {
+  background-color: rgb(160 174 184 / 50%) !important;
 }
 
 .dark-mode .movie-element {

@@ -14,7 +14,6 @@ export const SingleMovie = () => {
     const [movie, setMovie] = useState({});
 
     const recommendationsUrl = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
-    const [recLoading, setRecLoading] = useState(false);
     const [recMovies, setRecMovies] = useState([]);
 
     const {watchlist, toggleWatchlist, movieRatings} = useGlobalContext();
@@ -68,7 +67,6 @@ export const SingleMovie = () => {
     }, [url])
 
     useEffect(() => {
-        setRecLoading(true);
         async function fetchMovieRecs() {
             try {
                 const response = await fetch(recommendationsUrl);
@@ -92,7 +90,6 @@ export const SingleMovie = () => {
                 }
             }
             catch (error) {
-                setRecLoading(false);
             }
         }
         fetchMovieRecs();

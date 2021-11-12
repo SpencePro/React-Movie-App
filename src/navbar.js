@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import { useGlobalContext } from "./context";
 import { HiOutlineSun, HiOutlineMoon } from "react-icons/hi";
+import logo from "./film-logo.png";
 
 export const Navbar = () => {
     const {websiteTheme, setWebsiteTheme} = useGlobalContext();
     return (
         <nav>
             <div className="logo">
-            <Link to="/"><img src="#" alt="Site Logo" /></Link>
+            <Link to="/"><img src={logo} alt="Site Logo" /></Link>
             </div>
             <ul className="nav-links">
                 <li>

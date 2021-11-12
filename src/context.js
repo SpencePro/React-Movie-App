@@ -139,7 +139,7 @@ const AppProvider = ({ children }) => {
     }
     useEffect(() => {
         filterMovies();
-    }, [pageNumber, typeOfMovie])
+    })
 
     const togglePage = (action) => {
         document.body.scrollTop = 500;
