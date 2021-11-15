@@ -2,14 +2,16 @@
 
 ### Overview
 
-This project was created with the API from (The Movie Database)[https://www.themoviedb.org/]. It's main purpose was to practice learning React. 
+This project was created with the API from [The Movie Database](https://www.themoviedb.org/). It's main purpose was to practice learning React. 
+
+The deployed website can be found here: [React movie app](https://react-app-for-movie-api.herokuapp.com/)
 
 ### Tech Stack
 
 The app uses the following tech stack:
 
 - HTML5 & CSS3
-- JavaScript + React JS
+- JavaScript + React JS + hooks
 - React Icons
 - deployed via Heroku
 
