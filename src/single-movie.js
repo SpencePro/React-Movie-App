@@ -118,12 +118,6 @@ export const SingleMovie = () => {
                 <header>
                     <h2>{title}</h2>
                     <img src={`${IMAGE_BASE_URL}${imageSize}${poster}`} alt={title} />
-                    <div className="single-movie-details">
-                        <h5>Community Score: {rating} ({vote_count} votes)</h5>
-                        <h5>Popularity: {popularity}</h5>
-                        <h5>{runtime} minutes</h5>
-                        <h5>Released {release_date}</h5>
-                    </div>
                 </header>
                 <div className="secondary-movie-info">
                     <div className="single-movie-synopsis">
@@ -139,6 +133,12 @@ export const SingleMovie = () => {
                                 {present ? "Remove from Watchlist":"Add to Watchlist"}
                             </button>
                         </div>
+                    </div>
+                    <div className="single-movie-details">
+                        <h5>Community Score: {rating} ({vote_count} votes)</h5>
+                        <h5>Popularity: {popularity}</h5>
+                        <h5>{runtime} minutes</h5>
+                        <h5>Released {release_date}</h5>
                     </div>
                 </div>
             </div>

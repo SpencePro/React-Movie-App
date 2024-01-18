@@ -46,6 +46,7 @@ const AppProvider = ({ children }) => {
     const [url, setUrl] = useState(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${pageNumber}`);
     const [homePageImageIndex, setHomePageImageIndex] = useState(0);
     const [homePageImageUrl, setHomePageImageUrl] = useState("");
+    const [homePageImageId, setHomePageImageId] = useState(0); 
     const [websiteTheme, setWebsiteTheme] = useState(getLocalStorageTheme());
 
     const toggleWatchlist = (movieId, title, release_date, rating) => {
@@ -167,9 +168,12 @@ const AppProvider = ({ children }) => {
                     else {
                         imageSize = "w780";
                     }
+                    console.log( { data } );
                     const imagePath = data.results[homePageImageIndex].poster_path;
+                    const imageId = data.results[homePageImageIndex].id;
                     const newImageUrl = `${IMAGE_BASE_URL}${imageSize}${imagePath}`;
                     setHomePageImageUrl(newImageUrl);
+                    setHomePageImageId(imageId);
                 }
             }
             catch (error) {}
@@ -188,7 +192,7 @@ const AppProvider = ({ children }) => {
     }
 
     return (
-        <AppContext.Provider value={{websiteTheme, setWebsiteTheme, watchlist, setWatchlist, toggleWatchlist, filterMovies, setSearchTerm, rateMovies, movieRatings, searchResults, setSearchResults, url, typeOfMovie, setTypeOfMovie, pageNumber, setPageNumber, togglePage, bannerImage, homePageImageUrl, returnToTop}}>
+        <AppContext.Provider value={{websiteTheme, setWebsiteTheme, watchlist, setWatchlist, toggleWatchlist, filterMovies, setSearchTerm, rateMovies, movieRatings, searchResults, setSearchResults, url, typeOfMovie, setTypeOfMovie, pageNumber, setPageNumber, togglePage, bannerImage, homePageImageUrl, homePageImageId, returnToTop}}>
             {children}
         </AppContext.Provider>
     );

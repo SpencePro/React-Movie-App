@@ -63,11 +63,11 @@ export const MovieList = () => {
                                     <h5><Link to={`/movie/${movieId}`}>{title}</Link></h5>
                                 </header>
                             </div>
-                            <span className="movie-info shadow">
+                            {/* <span className="movie-info shadow">
                                 <p>Released {release_date}</p>
                                 <p>Popularity: {popularity}</p>
                                 <p>Rating: {rating}</p>
-                            </span>
+                            </span> */}
                         </article>
                     );
                 })}

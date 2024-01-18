@@ -32,7 +32,9 @@ export const Search = () => {
                         const {movieId, title, poster} = result;
                         return (
                             <article key={movieId} className="search-result-single">
-                                <img src={`${IMAGE_BASE_URL}w92${poster}`} alt={title} className="link-image"/>
+                                <Link to={`/movie/${movieId}`} onClick={resetDefault}>
+                                    <img src={`${IMAGE_BASE_URL}w92${poster}`} alt={title} className="link-image"/>
+                                </Link>
                                 <p><Link to={`/movie/${movieId}`} className="search-result-title" onClick={resetDefault}>{title}</Link></p>
                             </article>
                         )

@@ -66,7 +66,7 @@ nav {
 
 .line-below {
   max-width: 0;
-  background-color: blue;
+  background-color:#4b5054;
   height: 1px;
   transition-property: max-width;
   transition-duration: 0.5s;
@@ -75,10 +75,17 @@ nav {
 
 .nav-links li:hover .line-below {
   max-width: 150px;
+  color: #4b5054;
 }
 
 .nav-links li a {
   text-decoration: none;
+  color: #202024;
+}
+
+.nav-links li a:hover {
+  text-decoration: none;
+  color: #4b5054;
 }
 
 /* Home Image */
@@ -138,6 +145,10 @@ nav {
   background-color: aliceblue;
   border: 1px solid rgb(196, 226, 253);
   border-top: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-result-single a {
@@ -196,14 +207,17 @@ nav {
   margin: 0.2rem;
   height: 98%;
   border-radius: 5px;
-}
-
-.movie-sub-div header h5 {
-  max-width: fit-content;
+  width: min-content;
 }
 
 .movie-sub-div header h5 a {
   text-decoration: none;
+  text-align: center;
+  color: #202024;
+}
+
+.movie-sub-div header h5 a:hover {
+  color: #4b5054;
 }
 
 .movie-sub-div img:hover {
@@ -324,20 +338,7 @@ table td, table th {
   padding: 0.5rem;
 }
 
-.single-movie-details, .single-movie-synopsis {
-  margin: 1rem;
-  background-color: aliceblue;
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-.single-movie-details {
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-}
-
-.user-options {
+.single-movie-details, .single-movie-synopsis, .user-options {
   margin: 1rem;
   background-color: aliceblue;
   padding: 0.5rem;
@@ -367,6 +368,11 @@ table td, table th {
 
 .movie-rec p a {
   text-decoration: none;
+  color: #202024;
+}
+
+.movie-rec p a:hover {
+  color:#4b5054;
 }
 
 .movie-rec img:hover {
@@ -526,6 +532,10 @@ footer p {
   color: rgb(218, 216, 216);
 }
 
+.dark-mode .nav-links li a {
+  color: white
+}
+
 .dark-mode .line-below {
   background-color: rgb(218, 216, 216);
 }
@@ -565,6 +575,16 @@ footer p {
 
 .dark-mode .movie-sub-div {
   background-color: rgb(119, 118, 118);
+}
+
+.dark-mode .movie-sub-div header h5 a {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+}
+
+.dark-mode .movie-sub-div header h5 a:hover {
+  color: rgb(227, 225, 225);
 }
 
 .dark-mode .movie-info {
@@ -607,6 +627,15 @@ footer p {
 
 .dark-mode .movie-rec {
   background-color: rgb(119, 118, 118);
+}
+
+.dark-mode .movie-rec p a {
+  color: white;
+}
+
+.dark-mode .movie-rec p a:hover {
+  color: rgb(227, 225, 225);
+  ;
 }
 
 .dark-mode .movie-section {
