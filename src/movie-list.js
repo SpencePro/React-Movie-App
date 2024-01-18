@@ -54,7 +54,7 @@ export const MovieList = () => {
         <main>
             <section className="movie-list-section">
                 {movieList.map((movie) => {
-                    const {movieId, title, poster, release_date, popularity, rating} = movie;
+                    const {movieId, title, poster} = movie;
                     return (
                         <article className="movie" key={movieId}>
                             <div className="movie-sub-div shadow">
@@ -63,11 +63,6 @@ export const MovieList = () => {
                                     <h5><Link to={`/movie/${movieId}`}>{title}</Link></h5>
                                 </header>
                             </div>
-                            {/* <span className="movie-info shadow">
-                                <p>Released {release_date}</p>
-                                <p>Popularity: {popularity}</p>
-                                <p>Rating: {rating}</p>
-                            </span> */}
                         </article>
                     );
                 })}
